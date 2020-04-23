@@ -1,4 +1,5 @@
-﻿using BuildingRestfulAPIAspnetCore3.Helpers;
+﻿using AutoMapper;
+using BuildingRestfulAPIAspnetCore3.Helpers;
 using BuildingRestfulAPIAspnetCore3.Models;
 using CourseLibrary.API.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -15,39 +16,28 @@ namespace BuildingRestfulAPIAspnetCore3.Controllers
     public class AuthorController: ControllerBase
     {   
         private readonly ICourseLibraryRepository _courseLibraryRepository;
+        private readonly IMapper _mapper;
 
-        public AuthorController(ICourseLibraryRepository courseLibraryRepository)
+        public AuthorController(ICourseLibraryRepository courseLibraryRepository,IMapper mapper)
         {
             _courseLibraryRepository = courseLibraryRepository ?? 
                 throw new ArgumentNullException(nameof(courseLibraryRepository));
+            _mapper = mapper ??
+                throw new ArgumentNullException(nameof(mapper));
         }
         [HttpGet()]
         public ActionResult<IEnumerable<AuthorDto>> GetAuthors()
         {
             var authorsFromRepo = _courseLibraryRepository.GetAuthors();
-            var authors = new List<AuthorDto>();
-
-            foreach(var author in authorsFromRepo)
-            {
-                authors.Add(new AuthorDto()
-                {
-                    Id = author.Id,
-                    Name = $"{author.FirstName}{author.LastName}",
-                    MainCategory=author.MainCategory,
-                    Age=author.DateOfBirth.GetCurrentAge()
-
-                });
-
-            }
-
-            return Ok(authors);
+           
+            return Ok(_mapper.Map<IEnumerable<AuthorDto>>(authorsFromRepo));
         }
         [HttpGet("{authorId:guid}")]
         public IActionResult GetAuthor(Guid authorId)
         {
             var authorFromRepo = _courseLibraryRepository.GetAuthor(authorId);
             if (authorFromRepo == null) NotFound();
-            return Ok(authorFromRepo);
+            return Ok(_mapper.Map<IEnumerable<AuthorDto>>(authorFromRepo));
         }
 
 

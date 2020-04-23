@@ -35,3 +35,5 @@ D:\Git\Building-Restful-API-AspnetCore3\BuildingRestfulAPIAspnetCore3\BuildingRe
 D:\Git\Building-Restful-API-AspnetCore3\BuildingRestfulAPIAspnetCore3\BuildingRestfulAPIAspnetCore3\obj\Debug\netcoreapp3.0\BuildingRestfulAPIAspnetCore3.dll
 D:\Git\Building-Restful-API-AspnetCore3\BuildingRestfulAPIAspnetCore3\BuildingRestfulAPIAspnetCore3\obj\Debug\netcoreapp3.0\BuildingRestfulAPIAspnetCore3.pdb
 D:\Git\Building-Restful-API-AspnetCore3\BuildingRestfulAPIAspnetCore3\BuildingRestfulAPIAspnetCore3\bin\Debug\netcoreapp3.0\AutoMapper.dll
+D:\Git\Building-Restful-API-AspnetCore3\BuildingRestfulAPIAspnetCore3\BuildingRestfulAPIAspnetCore3\bin\Debug\netcoreapp3.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Git\Building-Restful-API-AspnetCore3\BuildingRestfulAPIAspnetCore3\BuildingRestfulAPIAspnetCore3\obj\Debug\netcoreapp3.0\BuildingRestfulAPIAspnetCore3.MvcApplicationPartsAssemblyInfo.cache
