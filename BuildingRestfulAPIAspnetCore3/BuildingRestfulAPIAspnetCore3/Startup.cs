@@ -32,7 +32,7 @@ namespace CourseLibrary.API
             services.AddDbContext<CourseLibraryContext>(options =>
             {
                 options.UseSqlServer(
-                    @"Server=(localdb)\mssqllocaldb;Database=CourseLibraryDB;Trusted_Connection=True;");
+                    @"Server=DESKTOP-05KO2T6;Database=CampDatabase;Trusted_Connection=True;");
             }); 
         }
 

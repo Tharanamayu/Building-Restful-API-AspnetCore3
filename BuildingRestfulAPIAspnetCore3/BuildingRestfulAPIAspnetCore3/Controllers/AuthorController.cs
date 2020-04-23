@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 namespace BuildingRestfulAPIAspnetCore3.Controllers
 {
     [ApiController]
-    //[Route("api/authors")]
-    [Route("api/[controller]")]
+    [Route("api/authors")]
+    //[Route("api/[controller]")]
     public class AuthorController: ControllerBase
     {   
         private readonly ICourseLibraryRepository _courseLibraryRepository;
@@ -32,12 +32,12 @@ namespace BuildingRestfulAPIAspnetCore3.Controllers
            
             return Ok(_mapper.Map<IEnumerable<AuthorDto>>(authorsFromRepo));
         }
-        [HttpGet("{authorId:guid}")]
+        [HttpGet("{authorId}")]
         public IActionResult GetAuthor(Guid authorId)
         {
             var authorFromRepo = _courseLibraryRepository.GetAuthor(authorId);
-            if (authorFromRepo == null) NotFound();
-            return Ok(_mapper.Map<IEnumerable<AuthorDto>>(authorFromRepo));
+            if (authorFromRepo == null) return NotFound();
+            return Ok(_mapper.Map<AuthorDto>(authorFromRepo));
         }
 
 
