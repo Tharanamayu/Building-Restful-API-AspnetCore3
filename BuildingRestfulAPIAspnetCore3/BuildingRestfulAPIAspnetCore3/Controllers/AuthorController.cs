@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BuildingRestfulAPIAspnetCore3.Helpers;
 using BuildingRestfulAPIAspnetCore3.Models;
+using BuildingRestfulAPIAspnetCore3.ResourceParameters;
 using CourseLibrary.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -26,9 +27,9 @@ namespace BuildingRestfulAPIAspnetCore3.Controllers
                 throw new ArgumentNullException(nameof(mapper));
         }
         [HttpGet()]
-        public ActionResult<IEnumerable<AuthorDto>> GetAuthors(string mainCategory,string searchQuery)
+        public ActionResult<IEnumerable<AuthorDto>> GetAuthors([FromQuery]AuthorsResourceParameters authorsResourceparameters)
         {
-            var authorsFromRepo = _courseLibraryRepository.GetAuthors(mainCategory,searchQuery);
+            var authorsFromRepo = _courseLibraryRepository.GetAuthors(authorsResourceparameters);
            
             return Ok(_mapper.Map<IEnumerable<AuthorDto>>(authorsFromRepo));
         }
