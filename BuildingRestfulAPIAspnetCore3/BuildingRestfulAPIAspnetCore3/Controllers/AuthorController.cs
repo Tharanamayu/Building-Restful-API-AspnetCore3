@@ -26,9 +26,9 @@ namespace BuildingRestfulAPIAspnetCore3.Controllers
                 throw new ArgumentNullException(nameof(mapper));
         }
         [HttpGet()]
-        public ActionResult<IEnumerable<AuthorDto>> GetAuthors(string mainCategory)
+        public ActionResult<IEnumerable<AuthorDto>> GetAuthors(string mainCategory,string searchQuery)
         {
-            var authorsFromRepo = _courseLibraryRepository.GetAuthors(mainCategory);
+            var authorsFromRepo = _courseLibraryRepository.GetAuthors(mainCategory,searchQuery);
            
             return Ok(_mapper.Map<IEnumerable<AuthorDto>>(authorsFromRepo));
         }
