@@ -52,6 +52,12 @@ namespace BuildingRestfulAPIAspnetCore3.Controllers
             //return CreatedAtRoute("GetAuthor", new { authorId = authorToReturn.Id },authorToReturn);
             return Ok();
         }
-        
+        [HttpOptions]
+        public IActionResult GetAuthorsOptions()
+        {
+            Response.Headers.Add("Allow", "GET,OPTIONS,POST");
+            return Ok();
+        }
+
     }
 }
