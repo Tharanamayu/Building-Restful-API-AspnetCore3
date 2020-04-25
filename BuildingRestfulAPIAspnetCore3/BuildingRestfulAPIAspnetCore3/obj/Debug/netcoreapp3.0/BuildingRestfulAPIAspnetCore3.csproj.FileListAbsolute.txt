@@ -2,7 +2,6 @@ D:\Git\Building-Restful-API-AspnetCore3\BuildingRestfulAPIAspnetCore3\BuildingRe
 D:\Git\Building-Restful-API-AspnetCore3\BuildingRestfulAPIAspnetCore3\BuildingRestfulAPIAspnetCore3\bin\Debug\netcoreapp3.0\appsettings.json
 D:\Git\Building-Restful-API-AspnetCore3\BuildingRestfulAPIAspnetCore3\BuildingRestfulAPIAspnetCore3\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
 D:\Git\Building-Restful-API-AspnetCore3\BuildingRestfulAPIAspnetCore3\BuildingRestfulAPIAspnetCore3\bin\Debug\netcoreapp3.0\BuildingRestfulAPIAspnetCore3.exe
-D:\Git\Building-Restful-API-AspnetCore3\BuildingRestfulAPIAspnetCore3\BuildingRestfulAPIAspnetCore3\obj\Debug\netcoreapp3.0\BuildingRestfulAPIAspnetCore3.csprojAssemblyReference.cache
 D:\Git\Building-Restful-API-AspnetCore3\BuildingRestfulAPIAspnetCore3\BuildingRestfulAPIAspnetCore3\obj\Debug\netcoreapp3.0\staticwebassets\BuildingRestfulAPIAspnetCore3.StaticWebAssets.Manifest.cache
 D:\Git\Building-Restful-API-AspnetCore3\BuildingRestfulAPIAspnetCore3\BuildingRestfulAPIAspnetCore3\obj\Debug\netcoreapp3.0\staticwebassets\BuildingRestfulAPIAspnetCore3.StaticWebAssets.xml
 D:\Git\Building-Restful-API-AspnetCore3\BuildingRestfulAPIAspnetCore3\BuildingRestfulAPIAspnetCore3\obj\Debug\netcoreapp3.0\BuildingRestfulAPIAspnetCore3.AssemblyInfoInputs.cache

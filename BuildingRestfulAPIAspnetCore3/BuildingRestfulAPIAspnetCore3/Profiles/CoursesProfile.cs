@@ -11,6 +11,8 @@ namespace BuildingRestfulAPIAspnetCore3.Profiles
         public CoursesProfile()
         {
             CreateMap<CourseLibrary.API.Entities.Course,Models.CourseDto>();
+            CreateMap<Models.CourseForCreationDto, CourseLibrary.API.Entities.Course>();
+
         }
     }
 }
