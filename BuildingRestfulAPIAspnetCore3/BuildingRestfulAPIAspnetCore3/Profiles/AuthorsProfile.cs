@@ -18,6 +18,8 @@ namespace BuildingRestfulAPIAspnetCore3.Profiles
                 .ForMember(
                 dest => dest.Age,
                 opt => opt.MapFrom(src=>src.DateOfBirth.GetCurrentAge()));//source type=>destination type
+
+            CreateMap<Models.AuthorDto, CourseLibrary.API.Entities.Author>();
         }
     }
 }
