@@ -49,7 +49,8 @@ namespace BuildingRestfulAPIAspnetCore3.Controllers
             _courseLibraryRepository.Save();//this moment entity has been added  to database
 
             var authorToReturn = _mapper.Map<AuthorDto>(authorEntity);
-            return CreatedAtRoute("GetAuthor", new { authorId = authorToReturn.Id },authorToReturn);
+            //return CreatedAtRoute("GetAuthor", new { authorId = authorToReturn.Id },authorToReturn);
+            return Ok();
         }
         
     }
