@@ -64,6 +64,26 @@ namespace BuildingRestfulAPIAspnetCore3.Controllers
             return CreatedAtRoute("GetCourseForAuthor", new { courseId = courseToReturn.Id }, courseToReturn);
 
         }
+        [HttpPut("{courseId}")]
+        public ActionResult UpdateCourseForAuthor(Guid authorId,Guid courseId,CourseForUpdateDto course)
+        {
+            if (!_courseLibraryRepository.AuthorExists(authorId))
+            {
+                return NotFound();
+            }
+            var courseFromAuthorFromRepo = _courseLibraryRepository.GetCourse(authorId, courseId);
+            if (courseFromAuthorFromRepo==null)
+            {
+                return NotFound();
+            }
+            // map the entity to a CourseForUpdateDto
+            // apply the updated field values to that dto
+            // map the CourseForUpdateDto back to an entity
+            _mapper.Map(course,courseFromAuthorFromRepo);
+            _courseLibraryRepository.UpdateCourse(courseFromAuthorFromRepo);
+            _courseLibraryRepository.Save();
+            return NoContent();
+        }
 
     }
 }
