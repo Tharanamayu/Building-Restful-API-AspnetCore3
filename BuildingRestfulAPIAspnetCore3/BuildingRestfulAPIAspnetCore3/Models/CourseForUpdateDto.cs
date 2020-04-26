@@ -5,10 +5,8 @@ using System.Threading.Tasks;
 
 namespace BuildingRestfulAPIAspnetCore3.Models
 {
-    public class CourseForUpdateDto
+    public class CourseForUpdateDto :CourseForManipulationDto
     {
 
-        public string Title { get; set; }
-        public string Description { get; set; }
     }
 }
