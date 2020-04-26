@@ -61,11 +61,13 @@ namespace BuildingRestfulAPIAspnetCore3.Controllers
             _courseLibraryRepository.Save();
 
             var courseToReturn = _mapper.Map<CourseDto>(courseEntity);
-            return CreatedAtRoute("GetCourseForAuthor", new { courseId = courseToReturn.Id }, courseToReturn);
+            return CreatedAtRoute("GetCourseForAuthor",
+                new {authorId, courseId = courseToReturn.Id },
+                courseToReturn);
 
         }
         [HttpPut("{courseId}")]
-        public ActionResult UpdateCourseForAuthor(Guid authorId,Guid courseId,CourseForUpdateDto course)
+        public IActionResult UpdateCourseForAuthor(Guid authorId,Guid courseId,CourseForUpdateDto course)
         {
             if (!_courseLibraryRepository.AuthorExists(authorId))
             {
@@ -74,7 +76,12 @@ namespace BuildingRestfulAPIAspnetCore3.Controllers
             var courseFromAuthorFromRepo = _courseLibraryRepository.GetCourse(authorId, courseId);
             if (courseFromAuthorFromRepo==null)
             {
-                return NotFound();
+                var courseToAdd = _mapper.Map<CourseLibrary.API.Entities.Course>(course);
+                _courseLibraryRepository.AddCourse(authorId, courseToAdd);
+                _courseLibraryRepository.Save();
+
+                var courseToReturn = _mapper.Map<CourseDto>(courseToAdd);
+                return CreatedAtRoute("GetCourseForAuthor", new {authorId, courseId = courseToReturn.Id }, courseToReturn);
             }
             // map the entity to a CourseForUpdateDto
             // apply the updated field values to that dto
