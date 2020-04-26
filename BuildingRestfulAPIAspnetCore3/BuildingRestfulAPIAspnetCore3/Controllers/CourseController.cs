@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BuildingRestfulAPIAspnetCore3.Models;
 using CourseLibrary.API.Services;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -91,6 +92,26 @@ namespace BuildingRestfulAPIAspnetCore3.Controllers
             _courseLibraryRepository.Save();
             return NoContent();
         }
+        [HttpPatch("{courseId}")]
+        public ActionResult PartiallyUpdateCourseForAuthor(Guid authorId,Guid courseId,JsonPatchDocument<CourseForUpdateDto> patchDocument)
+        {
+            if (!_courseLibraryRepository.AuthorExists(authorId))
+            {
+                return NotFound();
+            }
+            var courseFromAuthorFromRepo = _courseLibraryRepository.GetCourse(authorId, courseId);
+            if (courseFromAuthorFromRepo == null)
+            {
+                return NotFound();
+            }
+            var courseToPatch = _mapper.Map<CourseForUpdateDto>(courseFromAuthorFromRepo);
+            //add validation
+            patchDocument.ApplyTo(courseToPatch);
+            _mapper.Map(courseToPatch, courseFromAuthorFromRepo);
+            _courseLibraryRepository.UpdateCourse(courseFromAuthorFromRepo);
+            _courseLibraryRepository.Save();
+            return NoContent();
 
+        }
     }
 }
