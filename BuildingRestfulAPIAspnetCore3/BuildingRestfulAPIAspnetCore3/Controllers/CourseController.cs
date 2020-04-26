@@ -106,7 +106,25 @@ namespace BuildingRestfulAPIAspnetCore3.Controllers
             var courseFromAuthorFromRepo = _courseLibraryRepository.GetCourse(authorId, courseId);
             if (courseFromAuthorFromRepo == null)
             {
-                return NotFound();
+                var courseDto = new CourseForUpdateDto();
+                patchDocument.ApplyTo(courseDto, ModelState);
+
+                if (!TryValidateModel(courseDto))
+                {
+                    return ValidationProblem(ModelState);
+                }
+
+                var courseToAdd = _mapper.Map<CourseLibrary.API.Entities.Course>(courseDto);
+                courseToAdd.Id = courseId;
+
+                _courseLibraryRepository.AddCourse(authorId, courseToAdd);
+                _courseLibraryRepository.Save();
+
+                var courseToReturn = _mapper.Map<CourseDto>(courseToAdd);
+
+                return CreatedAtRoute("GetCourseForAuthor",
+                    new { authorId, courseId = courseToReturn.Id },
+                    courseToReturn);
             }
             var courseToPatch = _mapper.Map<CourseForUpdateDto>(courseFromAuthorFromRepo);
             //add validation
@@ -124,7 +142,7 @@ namespace BuildingRestfulAPIAspnetCore3.Controllers
 
         }
         public override ActionResult ValidationProblem(
-    [ActionResultObjectValue] ModelStateDictionary modelStateDictionary)
+                  [ActionResultObjectValue] ModelStateDictionary modelStateDictionary)
         {
             var options = HttpContext.RequestServices
                 .GetRequiredService<IOptions<ApiBehaviorOptions>>();
