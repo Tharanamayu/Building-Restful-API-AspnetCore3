@@ -142,7 +142,10 @@ namespace CourseLibrary.API.Services
                      || a.FirstName.Contains(searchQuery)
                      || a.LastName.Contains(searchQuery));
             }
-            return collection.ToList();
+            return collection
+                .Skip(authorsResourceparameters.PageSize*(authorsResourceparameters.PageNumber-1))
+                .Take(authorsResourceparameters.PageSize)
+                .ToList();
         }
 
         public IEnumerable<Author> GetAuthors(IEnumerable<Guid> authorIds)
